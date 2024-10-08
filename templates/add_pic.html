@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Favourites gallery</title>
+{% endblock %}
+
+{% block content %}
+<h1 class="text-center text-xl font-bold my-8">Welcome to Vision Board gallery</h1>
+<hr>
+<form method="POST" action="{% url 'add_pic' %}" enctype="multipart/form-data">
+    <div class="flex items-start justify-center pt-10 bg-gray-100 min-h-screen">
+        <div class="bg-white p-6 rounded-lg shadow-lg  min-h-[500px] w-full max-w-xl">
+        <h3 class="text-xl font-bold mb-4 text-center">Add Picture</h3>
+        <form method="POST" action="{% url 'add_pic' %}" enctype="multipart/form-data">
+
+            {% csrf_token %}
+            {{ add_form.as_p }}
+
+        <div class="text-center">
+            <button type="submit" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Add</button>
+        </div>
+        </form>
+        </div>
+    </div>
+{% endblock %}

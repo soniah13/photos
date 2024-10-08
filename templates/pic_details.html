@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>{{ pic.title }}</title>
+{% endblock %}
+
+{% include 'navbar.html' %}
+{% block content %}
+<h1 class="text-3xl font-bold mb-6 text-center">{{ pic.title }}</h1>
+<hr>
+<div class="flex items-center justify-center pt-10 bg-gray-100 min-h-screen">
+    <div class="max-w-5xl mx-auto p-4">
+        <div class="flex flex-col md:flex-row md:space-x-10">
+            
+            <!-- Image Column -->
+            <div class="md:w-1/2 flex justify-center">
+                <img src="{{ pic.my_pic.url }}" alt="{{ pic.title }}" class="rounded-lg shadow-lg max-w-full h-auto">
+            </div>
+            
+            <!-- Text and Like Button Column -->
+            <div class="md:w-1/2 space-y-6">
+                <h2 class="text-2xl font-semibold">{{ pic.title }}</h2>
+                <p><strong>Category:</strong> {{ pic.category }}</p>
+                <p><strong>Description:</strong> {{ pic.description }}</p>
+                
+                <!-- Like/Unlike Button -->
+                <form method="POST" action="{% url 'pic_details' pic.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="text-xl focus:outline-none">
+                        {% if request.session.pic_likes and pic.id in request.session.pic_likes %}
+                            <span class="text-red-500">❤️</span> <!-- Red heart for liked -->
+                        {% else %}
+                            <span class="text-gray-500">🤍</span> <!-- Grey heart for not liked -->
+                        {% endif %}
+                    </button>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

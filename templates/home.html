@@ -1,0 +1,32 @@
+{% extends 'base.html'%}
+
+{% block title %}
+<title>Favourites gallery</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="container mx-auto py-8">
+        <h1 class="text-3xl font-bold mb-6 text-center">Welcome to Vision Board Picture Gallery</h1>
+        <div class="text-center mb-6 px-8">
+            <a href="?category=people" class="btn btn-primary pr-3 hover:underline ">People</a>
+            <a href="?category=nature" class="btn btn-primary pr-3 hover:underline ">Nature</a>
+            <a href="?category=food" class="btn btn-primary pr-3 hover:underline ">Food</a>
+            <a href="?category=animal" class="btn btn-primary pr-3 hover:underline ">Animal</a>
+            <a href="?category=lifestyle" class="btn btn-primary pr-3 hover:underline ">Lifestyle</a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 bg-grey-700">
+            {% for picture in pictures %}
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="p-4">
+                        <h2 class="font-bold text-lg">{{ picture.title }}</h2>
+                    </div>
+                    <a href="{% url 'pic_details' picture.id %}">
+                        <img src="{{ picture.my_pic.url }}" alt="{{ picture.title }}" class="w-full h-full object-fit">
+                      </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
