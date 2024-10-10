@@ -22,7 +22,7 @@
                         <h2 class="font-bold text-lg">{{ picture.title }}</h2>
                     </div>
                     <a href="{% url 'pic_details' picture.id %}">
-                        <img src="{{ picture.my_pic.url }}" alt="{{ picture.title }}" class="w-full h-full object-fit">
+                        <img src="{{ picture.my_pic.url }}" alt="{{ picture.title }}" class="w-full h-48 object-cover">
                       </a>
                 </div>
             {% endfor %}
